@@ -19,7 +19,7 @@ setup(
     # ready to develop your plugin, and add your own dependencies (if there are
     # any).
     install_requires=['qiime2 >= 2.0.0', 'pandas', 'scipy'],
-    dependency_links=['git+https://github.com/slpeoples/karenina.git'],
+    dependency_links=['git+https://github.com/slpeoples/karenina.git#egg=0.0.0'],
 	author="Jesse Zaneveld",
     author_email="zaneveld@gmail.com",
     description="This script simulates microbiome " +

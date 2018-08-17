@@ -38,7 +38,7 @@ plugin.visualizers.register_function(
 	    'individual':'individual column identifier',
 	    'timepoint':'timepoint column identifier',
 	    'treatment':'treatment column identifier'
-    }
+    },
     name='Fit OU Models to PCoA Ordination output',
     description='This visualizer generates OU model parameters for PCoA output'
                 'data, for each individual and each defined treatment cohort.'
