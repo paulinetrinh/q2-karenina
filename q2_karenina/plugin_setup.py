@@ -26,17 +26,17 @@ plugin.visualizers.register_function(
 		'pcoa' : pcoa
     },
     parameters={
-        'method' : Str % Choices({'basinhopping'})
-		'metadata' : Metadata
-		'individual' : Str
-		'timepoint' : Str
+        'method' : Str % Choices({'basinhopping'}),
+		'metadata' : Metadata,
+		'individual' : Str,
+		'timepoint' : Str,
 		'treatment' : Str
     },
 	parameter_descriptions = {
-		'method' : 'global optimization method'
-		'metadata' : 'Sample metadata'
-		'individual' : 'individual column identifier'
-		'timepoint' : 'timepoint column identifier'
+		'method' : 'global optimization method',
+		'metadata' : 'Sample metadata',
+		'individual' : 'individual column identifier',
+		'timepoint' : 'timepoint column identifier',
 		'treatment' : 'treatment column identifier'
 	}
     name='Fit OU Models to PCoA Ordination output',
