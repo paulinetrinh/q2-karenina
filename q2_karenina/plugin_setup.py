@@ -1,8 +1,8 @@
-import qiime.plugin
+import qiime2.plugin
 
 import q2_karenina
 from q2_karenina import fit_timeseries
-from q2_types.ordination import PCoAResults as pcoa
+from q2_types.ordination import PCoAResults
 from qiime2.plugin import Metadata, Str, Choices
 
 
@@ -22,23 +22,23 @@ plugin = qiime.plugin.Plugin(
 
 plugin.visualizers.register_function(
     function=q2_karenina.fit_timeseries,
-	inputs={
-		'pcoa' : pcoa
+    inputs={
+        'pcoa' : PCoAResults
     },
     parameters={
-        'method' : Str % Choices({'basinhopping'}),
-		'metadata' : Metadata,
-		'individual' : Str,
-		'timepoint' : Str,
-		'treatment' : Str
+        'method':Str % Choices({'basinhopping'}),
+	    'metadata':Metadata,
+	    'individual':Str,
+	    'timepoint':Str,
+	    'treatment':Str
     },
 	parameter_descriptions = {
-		'method' : 'global optimization method',
-		'metadata' : 'Sample metadata',
-		'individual' : 'individual column identifier',
-		'timepoint' : 'timepoint column identifier',
-		'treatment' : 'treatment column identifier'
-	}
+	    'method':'global optimization method',
+	    'metadata':'Sample metadata',
+	    'individual':'individual column identifier',
+	    'timepoint':'timepoint column identifier',
+	    'treatment':'treatment column identifier'
+    }
     name='Fit OU Models to PCoA Ordination output',
     description='This visualizer generates OU model parameters for PCoA output'
                 'data, for each individual and each defined treatment cohort.'

@@ -1,0 +1,24 @@
+package:
+  name: q2-karenina
+  version: '0.0.0'
+
+source:
+  git_rev: '0.0.0'
+  git_url: 'https://github.com/SLPeoples/q2-karenina.git'
+
+requirements:
+  host:
+    - python
+    - setuptools
+
+  run:
+    - python
+
+test:
+  imports:
+    - q2-karenina
+
+about:
+  home: https://github.com/SLPeoples/q2-karenina
+  license: NONE
+  license_file: NONE
