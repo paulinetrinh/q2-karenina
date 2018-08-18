@@ -94,7 +94,7 @@ def _simulation_data(data, ids):
             dm_1.append(str(distance.euclidean(dm[key],dm[key1])))
         distance_matrix.append(dm_1)
 
-    with open(output+"euclidean.txt","w") as outfile:
+    with open("euclidean.txt","w") as outfile:
         for row in distance_matrix:
             for item in row:
                 outfile.write(str(item)+"\t")
@@ -111,7 +111,7 @@ def _simulation_data(data, ids):
     metadata = [md_0,md_1]
     for row in md:
         metadata.append(row)
-    with open(output+"metadata.tsv","w") as outfile:
+    with open("metadata.tsv","w") as outfile:
         for row in metadata:
             i=0
             for item in row:
