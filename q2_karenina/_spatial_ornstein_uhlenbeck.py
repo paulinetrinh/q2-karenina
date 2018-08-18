@@ -30,7 +30,7 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
 		"interindividual_variation":interindividual_variation}
     if "None" in fixed_start_pos:
         fixed_start_pos = None
-	if fixed_start_pos:
+    if fixed_start_pos:
         try:
             x,y,z = map(float,fixed_start_pos.split(","))
             individual_base_params['x']=x
