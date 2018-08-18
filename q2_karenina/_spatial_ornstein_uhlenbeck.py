@@ -94,4 +94,4 @@ def _simulation_data(data, ids):
     metadata = [md_0,md_1]
     for row in md:
         metadata.append(row)
-	return ordination, distance_matrix
+    return ordination, distance_matrix
