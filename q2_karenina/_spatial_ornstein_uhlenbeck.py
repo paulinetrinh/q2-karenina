@@ -75,7 +75,7 @@ def _simulation_data(data, ids):
         ordination.write("Site constraints\t0\t0\n")
         ordination_results = OrdinationResults.read(ordination)
     ordination.close
-	os.remove("ordination.txt")
+    os.remove("ordination.txt")
     
     # Distance matrix (euclidean)
     dm_0 = []
