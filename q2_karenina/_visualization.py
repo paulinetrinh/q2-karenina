@@ -17,6 +17,6 @@ import q2templates
 from q2_types.ordination import PCoAResults
 
 def visualization(output_dir: str, pcoa : PCoAResults, metadata : qiime2.Metadata,
-					method : str, individual_col: str, timepoint_col: str, treatment_col: str):
+				 individual_col: str, timepoint_col: str, treatment_col: str):
     #Parse in pcoa and metadata as dataframes and inject to k_visualization
 	pass
