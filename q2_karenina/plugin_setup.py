@@ -40,7 +40,6 @@ plugin.methods.register_function(
 	},
 	outputs=[
 		('ordination', PCoAResults),
-		('metadata', Metadata),
 		('distance_matrix', DistanceMatrix)
 	],
 	input_descriptions={},
@@ -62,7 +61,6 @@ plugin.methods.register_function(
 	},
 	output_descriptions={
 		'ordination': 'Sample PCoA file containing simulation data',
-		'metadata': 'Sample Metadata file containing simulation data',
 		'distance_matrix': 'Sample Distance Matrix containing simulation data'
 	},
 	name='Spatial Ornstein Uhlenbeck microbial community simulation',

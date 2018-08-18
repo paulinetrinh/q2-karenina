@@ -21,5 +21,6 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
 							n_timepoints:int, perturbation_timepoint:int,
 							perturbation_duration:int,interindividual_variation:float,
 							delta:float,lam:float,fixed_start_pos:str):
-	#pass items to k_OU
+	#pass items to k_OU, 
+	#ensure that metadata is saved with both PcOAResults, and DistanceMatrix!
 	pass
