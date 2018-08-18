@@ -73,7 +73,7 @@ def _simulation_data(data, ids):
         ordination.write("\n")
         ordination.write("Biplot\t0\t0\n\n")
         ordination.write("Site constraints\t0\t0\n")
-        ordination_results = OrdinationResults.read("ordination.txt", format='utf8')
+        ordination_results = OrdinationResults.read("ordination.txt")
     ordination.close
     os.remove("ordination.txt")
     
