@@ -1,7 +1,9 @@
 import qiime2.plugin
 
 import q2_karenina
+from q2_karenina._spatial_ornstein_uhlenbeck import spatial_ornstien_uhlenbeck
 from q2_karenina._fit_timeseries import fit_timeseries
+from q2_karenina._visualization import visualization
 from q2_types.ordination import PCoAResults
 from qiime2.plugin import Metadata, Str, Choices
 
@@ -20,6 +22,33 @@ plugin = qiime2.plugin.Plugin(
     citation_text=None
 )
 
+"""
+plugin.methods.register_function(
+	function=spatial_ornstien_uhlenbeck,
+	inputs={
+		#how about some input?
+	},
+	parameters={
+		#how about some parameters?
+	},
+	outputs=[
+		#metadata and pcoa
+	],
+	input_descriptions{
+		#how about descriptions?
+	},
+	parameter_descriptions{
+		#how about descriptions?
+	},
+	output_descriptions={
+		#how about descriptions?
+	},
+	name='Spatial Ornstein Uhlenbeck microbial community simulation',
+	description=("DESCRIPTION FROM ORIGINAL SCRIPT")
+)
+"""
+	
+
 plugin.visualizers.register_function(
     function=fit_timeseries,
     inputs={
@@ -28,18 +57,40 @@ plugin.visualizers.register_function(
     parameters={
         'method':Str % Choices({'basinhopping'}),
 	    'metadata':Metadata,
-	    'individual':Str,
-	    'timepoint':Str,
-	    'treatment':Str
+	    'individual_col':Str,
+	    'timepoint_col':Str,
+	    'treatment_col':Str
     },
 	parameter_descriptions = {
 	    'method':'global optimization method',
 	    'metadata':'Sample metadata',
-	    'individual':'individual column identifier',
-	    'timepoint':'timepoint column identifier',
-	    'treatment':'treatment column identifier'
+	    'individual_col':'individual column identifier',
+	    'timepoint_col':'timepoint column identifier',
+	    'treatment_col':'treatment column identifier'
     },
     name='Fit OU Models to PCoA Ordination output',
     description='This visualizer generates OU model parameters for PCoA output'
                 'data, for each individual and each defined treatment cohort.'
+)
+
+plugin.visualizers.register_function(
+    function=visualization,
+    inputs={
+        'pcoa' : PCoAResults
+    },
+    parameters={
+	    'metadata':Metadata,
+	    'individual_col':Str,
+	    'timepoint_col':Str,
+	    'treatment_col':Str
+    },
+	parameter_descriptions = {
+	    'method':'global optimization method',
+	    'metadata':'Sample metadata',
+	    'individual_col':'individual column identifier',
+	    'timepoint_col':'timepoint column identifier',
+	    'treatment_col':'treatment column identifier'
+    },
+    name='Fit OU Models to PCoA Ordination output',
+    description='This visualizer generates 3D animations of PCoA Timeseries.'
 )
