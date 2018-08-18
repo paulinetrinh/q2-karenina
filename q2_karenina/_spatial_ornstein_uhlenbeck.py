@@ -46,8 +46,8 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
     treatment_names = treatment_names.split(",")
     n_individuals = list(map(int,n_individuals.split(",")))
     experiment = Experiment(treatment_names,n_individuals,n_timepoints,
-        individual_base_params,treatments,interindividual_variation, verbose)
-    experiment.simulate_timesteps(0,n_timepoints, verbose)
+        individual_base_params,treatments,interindividual_variation, verbose=False)
+    experiment.simulate_timesteps(0,n_timepoints, verbose=False)
     data, ids = experiment.q2_data()
     _simulation_data(data, ids)
 	
