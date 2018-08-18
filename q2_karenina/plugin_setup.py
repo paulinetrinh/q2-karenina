@@ -23,7 +23,7 @@ plugin = qiime2.plugin.Plugin(
 )
 
 plugin.methods.register_function(
-	function=spatial_ornstien_uhlenbeck,
+	function=spatial_ornstein_uhlenbeck,
 	parameters={
 		'perturbation_fp':Str,
 		'treatment_names':Str,
