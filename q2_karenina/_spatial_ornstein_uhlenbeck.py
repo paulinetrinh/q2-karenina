@@ -36,16 +36,16 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
             individual_base_params['z']=z
 
         except:
-            print ("Supplied value for fixed start position after parsing:",opts.fixed_start_pos)
+            print ("Supplied value for fixed start position after parsing:",fixed_start_pos)
             raise ValueError('Problem with --fixed_start_pos. Got %s Please supply x,y,z values in the range (-1,1) separated by commas and '+
-				'enclosed in quotes. Example: "0.1,-0.2,0.3"'% opts.fixed_start_pos)
+				'enclosed in quotes. Example: "0.1,-0.2,0.3"'% fixed_start_pos)
     perturbations = parse_perturbation_file(perturbation_fp, perturbation_timepoint, perturbation_duration)
     treatments = [[], perturbations]
     treatment_names = treatment_names.split(",")
     n_individuals = list(map(int,n_individuals.split(",")))
     experiment = Experiment(treatment_names,n_individuals,n_timepoints,
-        individual_base_params,treatments,opts.interindividual_variation, verbose)
-    experiment.simulate_timesteps(0,opts.n_timepoints, verbose)
+        individual_base_params,treatments,interindividual_variation, verbose)
+    experiment.simulate_timesteps(0,n_timepoints, verbose)
     data, ids = experiment.q2_data()
     _simulation_data(data, ids)
 	
