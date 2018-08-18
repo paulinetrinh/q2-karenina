@@ -15,6 +15,7 @@ from karenina.experiment import Experiment
 import pkg_resources
 import qiime2
 import q2templates
+from scipy.spatial import distance
 from q2_types.ordination import PCoAResults
 from q2_types.ordination import PCoAResults
 from q2_types.distance_matrix import DistanceMatrix
