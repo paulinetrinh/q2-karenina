@@ -16,8 +16,6 @@ import qiime2
 import q2templates
 from q2_types.ordination import PCoAResults
 
-TEMPLATES = pkg_resources.resource_filename('q2_karenina')
-
 def fit_timeseries(pcoa : PCoAResults, metadata : qiime2.Metadata,
 					method : str, individual: str, timepoint: str, treatment: str):
     pass
