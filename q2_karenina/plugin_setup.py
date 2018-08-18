@@ -5,6 +5,7 @@ from q2_karenina._spatial_ornstein_uhlenbeck import spatial_ornstein_uhlenbeck
 from q2_karenina._fit_timeseries import fit_timeseries
 from q2_karenina._visualization import visualization
 from q2_types.ordination import PCoAResults
+from q2_types.distance_matrix import DistanceMatrix
 from qiime2.plugin import Metadata, Str, Choices, Int, Float
 
 
