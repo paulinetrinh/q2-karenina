@@ -54,19 +54,18 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
 	
 def _simulation_data(data, ids):
     ordination = []
-	ordination.append("Eigvals\t0" + "\n\n")
-	ordination.append("Proportion explained\t0"+ "\n\n")
-	ordination.append("Species\t0\t0\n\n")
-	ordination.append("Site\t"+str(len(data)*len(data[0][0]))+"\t3\n")
-	dm = {}
-	j=0
-	for row in data:
-		identifier = ids[j]
-		for i in range(len(row[0])):
-			ordination.append(str(identifier)+"_t"+str(i)+"\t"+str(row[0][i])+"\t"+str(row[1][i])+"\t"+str(row[2][i])+"\n")
-			dm.update({str(identifier)+"."+str(i):[row[0][i],row[1][i],row[2][i]]})
-		j+=1
-
+    ordination.append("Eigvals\t0" + "\n\n")
+    ordination.append("Proportion explained\t0"+ "\n\n")
+    ordination.append("Species\t0\t0\n\n")
+    ordination.append("Site\t"+str(len(data)*len(data[0][0]))+"\t3\n")
+    dm = {}
+    j=0
+    for row in data:
+        identifier = ids[j]
+        for i in range(len(row[0])):
+            ordination.append(str(identifier)+"_t"+str(i)+"\t"+str(row[0][i])+"\t"+str(row[1][i])+"\t"+str(row[2][i])+"\n")
+            dm.update({str(identifier)+"."+str(i):[row[0][i],row[1][i],row[2][i]]})
+        j+=1
     ordination.append("\n")
     ordination.append("Biplot\t0\t0\n\n")
     ordination.append("Site constraints\t0\t0\n")
