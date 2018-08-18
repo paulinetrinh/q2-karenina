@@ -54,7 +54,7 @@ def spatial_ornstein_uhlenbeck_v(output_dir:str, perturbation_fp:str, treatment_
         individual_base_params,treatments,interindividual_variation, verbose=False)
     experiment.simulate_timesteps(0,n_timepoints, verbose=False)
     data, ids = experiment.q2_data()
-    _simulation_data(data, ids, output_dir)
+    return _simulation_data(data, ids, output_dir)
     
 def _simulation_data(data, ids, output_dir):
     with open(output_dir+"ordination.txt","w", encoding='utf8') as ordination:
