@@ -91,7 +91,7 @@ def _simulation_data(data, ids, output_dir):
     with open(output_dir+"euclidean.txt","w") as distance:
         for row in distance_matrix:
             for item in row:
-                distance.write(str(item)+"\t"
+                distance.write(str(item)+"\t")
             distance.write("\n")
     distance.close()
 
