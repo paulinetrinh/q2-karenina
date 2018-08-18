@@ -26,7 +26,7 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
     #pass items to k_OU, 
     #ensure that metadata is saved with both PcOAResults, and DistanceMatrix!
     k_OU.check_perturbation_timepoint(perturbation_timepoint,n_timepoints)
-	individual_base_params = {"lambda":opts.L,"delta":opts.delta,
+    individual_base_params = {"lambda":opts.L,"delta":opts.delta,
 		"interindividual_variation":opts.interindividual_variation}
     if opts.fixed_start_pos:
         try:
@@ -39,15 +39,15 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
             print ("Supplied value for fixed start position after parsing:",opts.fixed_start_pos)
             raise ValueError('Problem with --fixed_start_pos. Got %s Please supply x,y,z values in the range (-1,1) separated by commas and '+
 				'enclosed in quotes. Example: "0.1,-0.2,0.3"'% opts.fixed_start_pos)
-	perturbations = parse_perturbation_file(perturbation_fp, perturbation_timepoint, perturbation_duration)
-	treatments = [[], perturbations]
+    perturbations = parse_perturbation_file(perturbation_fp, perturbation_timepoint, perturbation_duration)
+    treatments = [[], perturbations]
     treatment_names = treatment_names.split(",")
-	n_individuals = list(map(int,n_individuals.split(",")))
-	experiment = Experiment(treatment_names,n_individuals,n_timepoints,
+    n_individuals = list(map(int,n_individuals.split(",")))
+    experiment = Experiment(treatment_names,n_individuals,n_timepoints,
         individual_base_params,treatments,opts.interindividual_variation, verbose)
     experiment.simulate_timesteps(0,opts.n_timepoints, verbose)
     data, ids = experiment.q2_data()
-	_simulation_data(data, ids)
+    _simulation_data(data, ids)
 	
 def _simulation_data(data, ids):
     with open("ordination.txt","w") as outfile:
