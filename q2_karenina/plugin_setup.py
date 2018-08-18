@@ -24,11 +24,6 @@ plugin = qiime2.plugin.Plugin(
 
 plugin.methods.register_function(
 	function=spatial_ornstien_uhlenbeck,
-	"""
-	inputs={
-		#how about some input?
-	},
-	"""
 	parameters={
 		'perturbation_fp':Str,
 		'treatment_names':Str,
