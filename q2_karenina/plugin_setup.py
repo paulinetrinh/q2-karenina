@@ -1,7 +1,7 @@
 import qiime2.plugin
 
 import q2_karenina
-from q2_karenina import fit_timeseries
+from q2_karenina._fit_timeseries import fit_timeseries
 from q2_types.ordination import PCoAResults
 from qiime2.plugin import Metadata, Str, Choices
 
@@ -21,7 +21,7 @@ plugin = qiime2.plugin.Plugin(
 )
 
 plugin.visualizers.register_function(
-    function=q2_karenina.fit_timeseries,
+    function=fit_timeseries,
     inputs={
         'pcoa' : PCoAResults
     },
