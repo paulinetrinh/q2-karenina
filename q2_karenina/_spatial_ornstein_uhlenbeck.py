@@ -28,7 +28,7 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
     k_OU.check_perturbation_timepoint(perturbation_timepoint,n_timepoints)
     individual_base_params = {"lambda":lam,"delta":delta,
 		"interindividual_variation":interindividual_variation}
-    if fixed_start_pos:
+    if fixed_start_pos is not 'None':
         try:
             x,y,z = map(float,fixed_start_pos.split(","))
             individual_base_params['x']=x
