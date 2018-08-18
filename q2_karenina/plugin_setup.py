@@ -25,7 +25,7 @@ plugin = qiime2.plugin.Plugin(
 
 plugin.methods.register_function(
 	function=spatial_ornstein_uhlenbeck,
-	inputs={None},
+	inputs={},
 	parameters={
 		'perturbation_fp':Str,
 		'treatment_names':Str,
@@ -43,7 +43,7 @@ plugin.methods.register_function(
 		('metadata', Metadata),
 		('distance_matrix', DistanceMatrix)
 	],
-	input_descriptions={None},
+	input_descriptions={},
 	parameter_descriptions={
 		'perturbation_fp':'filepath for perturbation parameters for simulation results',
 		'treatment_names':'[\'control,destabalizing_treatment\'] Names for simulation treatments',
