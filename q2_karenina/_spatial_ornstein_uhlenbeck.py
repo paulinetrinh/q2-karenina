@@ -22,16 +22,16 @@ from q2_types.ordination import PCoAResults
 from q2_types.distance_matrix import DistanceMatrix
 import pandas as pd
 import tempfile
-		
+        
 def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_individuals:str, 
-							n_timepoints:int, perturbation_timepoint:int,
-							perturbation_duration:int,interindividual_variation:float,
-							delta:float,lam:float,fixed_start_pos:str) -> (OrdinationResults, DistanceMatrix):
+                            n_timepoints:int, perturbation_timepoint:int,
+                            perturbation_duration:int,interindividual_variation:float,
+                            delta:float,lam:float,fixed_start_pos:str) -> (OrdinationResults, DistanceMatrix):
     #pass items to k_OU, 
     #ensure that metadata is saved with both PcOAResults, and DistanceMatrix!
     k_OU.check_perturbation_timepoint(perturbation_timepoint,n_timepoints)
     individual_base_params = {"lambda":lam,"delta":delta,
-		"interindividual_variation":interindividual_variation}
+        "interindividual_variation":interindividual_variation}
     if "None" in fixed_start_pos:
         fixed_start_pos = None
     if fixed_start_pos:
@@ -44,7 +44,7 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
         except:
             print ("Supplied value for fixed start position after parsing:",fixed_start_pos)
             raise ValueError('Problem with --fixed_start_pos. Got %s Please supply x,y,z values in the range (-1,1) separated by commas and '+
-				'enclosed in quotes. Example: "0.1,-0.2,0.3"'% fixed_start_pos)
+                'enclosed in quotes. Example: "0.1,-0.2,0.3"'% fixed_start_pos)
     perturbations = k_OU.parse_perturbation_file(perturbation_fp, perturbation_timepoint, perturbation_duration)
     treatments = [[], perturbations]
     treatment_names = treatment_names.split(",")
@@ -54,10 +54,10 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
     experiment.simulate_timesteps(0,n_timepoints, verbose=False)
     data, ids = experiment.q2_data()
     return _simulation_data(data, ids)
-	
+    
 def _simulation_data(data, ids):
-	ordination = tempfile.NamedTemporaryFile()
-	ordination.write("Eigvals\t0" + "\n\n")
+    ordination = tempfile.NamedTemporaryFile()
+    ordination.write("Eigvals\t0" + "\n\n")
     ordination.write("Proportion explained\t0"+ "\n\n")
     ordination.write("Species\t0\t0\n\n")
     ordination.write("Site\t"+str(len(data)*len(data[0][0]))+"\t3\n")
@@ -72,8 +72,8 @@ def _simulation_data(data, ids):
     ordination.write("\n")
     ordination.write("Biplot\t0\t0\n\n")
     ordination.write("Site constraints\t0\t0\n")
-	ordination_results = OrdinationResults.read(ordination)
-	ordination.close
+    ordination_results = OrdinationResults.read(ordination)
+    ordination.close
     
     # Distance matrix (euclidean)
     dm_0 = []
@@ -99,5 +99,5 @@ def _simulation_data(data, ids):
     metadata = [md_0,md_1]
     for row in md:
         metadata.append(row)
-	#ADD FUNCTIONALITY TO RETURN MAPPING FILE
+    #ADD FUNCTIONALITY TO RETURN MAPPING FILE
     return ordination_results, distance_matrix
