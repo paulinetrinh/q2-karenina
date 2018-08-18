@@ -57,9 +57,9 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
     return _simulation_data(data, ids)
     
 def _simulation_data(data, ids):
-    with open("ordination.txt","w") as ordination:
-        ordination.write('Eigvals\t0\n\n')
-        ordination.write('Proportion explained\t0\n\n')
+    with open("ordination.txt","w", encoding='utf8') as ordination:
+        ordination.write('Eigvals\t0'+'\n\n')
+        ordination.write('Proportion explained\t0'+'\n\n')
         ordination.write('Species\t0\t0\n\n')
         ordination.write('Site\t'+str(len(data)*len(data[0][0]))+'\t3\n')
         dm = {}
@@ -73,7 +73,7 @@ def _simulation_data(data, ids):
         ordination.write("\n")
         ordination.write("Biplot\t0\t0\n\n")
         ordination.write("Site constraints\t0\t0\n")
-        ordination_results = OrdinationResults.read("ordination.txt")
+        ordination_results = OrdinationResults.read("ordination.txt", format='utf8')
     ordination.close
     os.remove("ordination.txt")
     
