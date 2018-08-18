@@ -88,12 +88,12 @@ def _simulation_data(data, ids, output_dir):
         for key1 in dm.keys():
             dm_1.append(str(distance.euclidean(dm[key],dm[key1])))
         distance_matrix.append(dm_1)
-	with open(output_dir+"euclidean.txt","w") as distance:
-	    for row in distance_matrix:
-		    for item in row:
-			    distance.write(str(item)+"\t"
-			distance.write("\n")
-	distance.close()
+    with open(output_dir+"euclidean.txt","w") as distance:
+        for row in distance_matrix:
+            for item in row:
+                distance.write(str(item)+"\t"
+            distance.write("\n")
+    distance.close()
 
     #Mapping file
     md_0 = ["#SampleID","Subject","Treatment","Timepoint"]
@@ -106,13 +106,13 @@ def _simulation_data(data, ids, output_dir):
     for row in md:
         metadata.append(row)
     with open(output_dir+"metadata.tsv","w") as meta:
-	    for row in metadata:
-		    i=0
-			for item in row:
-			    if i<len(row)-1:
-				    meta.write(str(item)+"\t")
-				if i==len(row)-1:
-				    meta.write(str(item))
-				i+=1
-			meta.write("\n")
-	meta.close()
+        for row in metadata:
+            i=0
+            for item in row:
+                if i<len(row)-1:
+                    meta.write(str(item)+"\t")
+                if i==len(row)-1:
+                    meta.write(str(item))
+                i+=1
+            meta.write("\n")
+    meta.close()
