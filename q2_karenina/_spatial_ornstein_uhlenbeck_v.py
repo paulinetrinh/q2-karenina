@@ -88,12 +88,12 @@ def _simulation_data(data, ids, output_dir):
         for key1 in dm.keys():
             dm_1.append(str(distance.euclidean(dm[key],dm[key1])))
         distance_matrix.append(dm_1)
-    with open(output_dir+"euclidean.txt","w") as distance:
+    with open(output_dir+"euclidean.txt","w") as distance_m:
         for row in distance_matrix:
             for item in row:
-                distance.write(str(item)+"\t")
-            distance.write("\n")
-    distance.close()
+                distance_m.write(str(item)+"\t")
+            distance_m.write("\n")
+    distance_m.close()
 
     #Mapping file
     md_0 = ["#SampleID","Subject","Treatment","Timepoint"]
