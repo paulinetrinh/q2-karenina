@@ -57,21 +57,21 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
     
 def _simulation_data(data, ids):
     ordination = tempfile.NamedTemporaryFile()
-    ordination.write("Eigvals\t0" + "\n\n")
-    ordination.write("Proportion explained\t0"+ "\n\n")
-    ordination.write("Species\t0\t0\n\n")
-    ordination.write("Site\t"+str(len(data)*len(data[0][0]))+"\t3\n")
+    ordination.write(b'Eigvals\t0\n\n')
+    ordination.write(b'Proportion explained\t0\n\n')
+    ordination.write(b'Species\t0\t0\n\n')
+    ordination.write(b'Site\t'+str(len(data)*len(data[0][0]))+'\t3\n')
     dm = {}
     j=0
     for row in data:
         identifier = ids[j]
         for i in range(len(row[0])):
-            ordination.write(str(identifier)+"_t"+str(i)+"\t"+str(row[0][i])+"\t"+str(row[1][i])+"\t"+str(row[2][i])+"\n")
+            ordination.write('b'+str(identifier)+"_t"+str(i)+"\t"+str(row[0][i])+"\t"+str(row[1][i])+"\t"+str(row[2][i])+"\n")
             dm.update({str(identifier)+"."+str(i):[row[0][i],row[1][i],row[2][i]]})
         j+=1
-    ordination.write("\n")
-    ordination.write("Biplot\t0\t0\n\n")
-    ordination.write("Site constraints\t0\t0\n")
+    ordination.write(b"\n")
+    ordination.write(b"Biplot\t0\t0\n\n")
+    ordination.write(b"Site constraints\t0\t0\n")
     ordination_results = OrdinationResults.read(ordination)
     ordination.close
     
