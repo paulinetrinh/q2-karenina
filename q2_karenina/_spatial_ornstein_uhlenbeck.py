@@ -22,6 +22,7 @@ from q2_types.ordination import PCoAResults
 from q2_types.distance_matrix import DistanceMatrix
 import pandas as pd
 import tempfile
+import os
         
 def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_individuals:str, 
                             n_timepoints:int, perturbation_timepoint:int,
@@ -56,24 +57,25 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
     return _simulation_data(data, ids)
     
 def _simulation_data(data, ids):
-    ordination = tempfile.NamedTemporaryFile(encoding='utf8')
-    ordination.write(str.encode('Eigvals\t0\n\n'))
-    ordination.write(str.encode('Proportion explained\t0\n\n'))
-    ordination.write(str.encode('Species\t0\t0\n\n'))
-    ordination.write(str.encode('Site\t'+str(len(data)*len(data[0][0]))+'\t3\n'))
-    dm = {}
-    j=0
-    for row in data:
-        identifier = ids[j]
-        for i in range(len(row[0])):
-            ordination.write(str.encode(str(identifier)+"_t"+str(i)+"\t"+str(row[0][i])+"\t"+str(row[1][i])+"\t"+str(row[2][i])+"\n"))
-            dm.update({str(identifier)+"."+str(i):[row[0][i],row[1][i],row[2][i]]})
-        j+=1
-    ordination.write(str.encode("\n"))
-    ordination.write(str.encode("Biplot\t0\t0\n\n"))
-    ordination.write(str.encode("Site constraints\t0\t0\n"))
-    ordination_results = OrdinationResults.read(ordination)
+    with open("ordination.txt","w") as ordination:
+        ordination.write('Eigvals\t0\n\n')
+        ordination.write('Proportion explained\t0\n\n')
+        ordination.write('Species\t0\t0\n\n')
+        ordination.write('Site\t'+str(len(data)*len(data[0][0]))+'\t3\n')
+        dm = {}
+        j=0
+        for row in data:
+            identifier = ids[j]
+            for i in range(len(row[0])):
+                ordination.write(str(identifier)+"_t"+str(i)+"\t"+str(row[0][i])+"\t"+str(row[1][i])+"\t"+str(row[2][i])+"\n")
+                dm.update({str(identifier)+"."+str(i):[row[0][i],row[1][i],row[2][i]]})
+            j+=1
+        ordination.write("\n")
+        ordination.write("Biplot\t0\t0\n\n")
+        ordination.write("Site constraints\t0\t0\n")
+        ordination_results = OrdinationResults.read(ordination)
     ordination.close
+	os.remove("ordination.txt")
     
     # Distance matrix (euclidean)
     dm_0 = []
