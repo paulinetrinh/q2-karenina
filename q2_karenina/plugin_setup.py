@@ -6,7 +6,7 @@ from q2_types.ordination import PCoAResults
 from qiime2.plugin import Metadata, Str, Choices
 
 
-plugin = qiime.plugin.Plugin(
+plugin = qiime2.plugin.Plugin(
     name='karenina',
     version=q2_karenina.__version__,
     website='https://github.com/zaneveld/karenina',
