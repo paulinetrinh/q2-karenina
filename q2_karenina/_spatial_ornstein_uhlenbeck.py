@@ -17,8 +17,8 @@ import q2templates
 from q2_types.ordination import PCoAResults
 
 		
-def spatial_ornstein_uhlenbeck(output_dir: str, perturbation_fp:str, treatment_names:str,
-							n_individuals:str, n_timepoints:int, perturbation_timepoint:int,
+def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_individuals:str, 
+							n_timepoints:int, perturbation_timepoint:int,
 							perturbation_duration:int,interindividual_variation:float,
 							delta:float,lam:float,fixed_start_pos:str):
 	#pass items to k_OU
