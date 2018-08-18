@@ -66,7 +66,9 @@ plugin.methods.register_function(
 		'distance_matrix': 'Sample Distance Matrix containing simulation data'
 	},
 	name='Spatial Ornstein Uhlenbeck microbial community simulation',
-	description=("DESCRIPTION FROM ORIGINAL SCRIPT")
+	description=('This method simulates microbial behavior over time using'
+				+'Ornstein Uhlenbeck models. This are similar to Brownian Motion'
+				+'with the exception that they include reversion to a mean.')
 )
 	
 plugin.visualizers.register_function(
