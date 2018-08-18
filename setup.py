@@ -19,8 +19,8 @@ setup(
     # ready to develop your plugin, and add your own dependencies (if there are
     # any).
     install_requires=['qiime2 >= 2.0.0', 'pandas', 'scipy'],
-    dependency_links=['git+ssh://git@github.com/slpeoples/karenina.git@0.0.0#egg=karenina-0.0.0'],
-	author="Jesse Zaneveld",
+    dependency_links=['git+https://github.com/slpeoples/karenina.git'],
+    author="Jesse Zaneveld",
     author_email="zaneveld@gmail.com",
     description="This script simulates microbiome " +
     "change over time using Ornstein-Uhlenbeck (OU) models.  These are " +
