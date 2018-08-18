@@ -18,10 +18,10 @@ setup(
     # visualizers provided as examples. Remove these dependencies when you're
     # ready to develop your plugin, and add your own dependencies (if there are
     # any).
-    install_requires=['qiime2 >= 2.0.0', 'pandas', 'scipy'],
+    install_requires=['qiime2 >= 2.0.0', 'pandas', 'scipy', 'skbio'],
     # THIS IS BROKEN AND NEEDS FIXING
-	# FOR NOW, REQUIRE USERS TO INSTALL KARENINA FIRST
-	# pip install git+https://github.com/zaneveld/karenina
+	    # FOR NOW, REQUIRE USERS TO INSTALL KARENINA FIRST
+	    # pip install git+https://github.com/zaneveld/karenina
 	dependency_links=['git+https://github.com/slpeoples/karenina.git'],
     author="Jesse Zaneveld",
     author_email="zaneveld@gmail.com",

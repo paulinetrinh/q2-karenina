@@ -16,14 +16,17 @@ import pkg_resources
 import qiime2
 import q2templates
 from scipy.spatial import distance
+from skbio import OrdinationResults
 from q2_types.ordination import PCoAResults
 from q2_types.ordination import PCoAResults
 from q2_types.distance_matrix import DistanceMatrix
+import pandas as pd
+import tempfile
 		
 def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_individuals:str, 
 							n_timepoints:int, perturbation_timepoint:int,
 							perturbation_duration:int,interindividual_variation:float,
-							delta:float,lam:float,fixed_start_pos:str) -> (PCoAResults, DistanceMatrix):
+							delta:float,lam:float,fixed_start_pos:str) -> (OrdinationResults, DistanceMatrix):
     #pass items to k_OU, 
     #ensure that metadata is saved with both PcOAResults, and DistanceMatrix!
     k_OU.check_perturbation_timepoint(perturbation_timepoint,n_timepoints)
@@ -53,22 +56,24 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
     return _simulation_data(data, ids)
 	
 def _simulation_data(data, ids):
-    ordination = []
-    ordination.append("Eigvals\t0" + "\n\n")
-    ordination.append("Proportion explained\t0"+ "\n\n")
-    ordination.append("Species\t0\t0\n\n")
-    ordination.append("Site\t"+str(len(data)*len(data[0][0]))+"\t3\n")
+	ordination = tempfile.NamedTemporaryFile()
+	ordination.write("Eigvals\t0" + "\n\n")
+    ordination.write("Proportion explained\t0"+ "\n\n")
+    ordination.write("Species\t0\t0\n\n")
+    ordination.write("Site\t"+str(len(data)*len(data[0][0]))+"\t3\n")
     dm = {}
     j=0
     for row in data:
         identifier = ids[j]
         for i in range(len(row[0])):
-            ordination.append(str(identifier)+"_t"+str(i)+"\t"+str(row[0][i])+"\t"+str(row[1][i])+"\t"+str(row[2][i])+"\n")
+            ordination.write(str(identifier)+"_t"+str(i)+"\t"+str(row[0][i])+"\t"+str(row[1][i])+"\t"+str(row[2][i])+"\n")
             dm.update({str(identifier)+"."+str(i):[row[0][i],row[1][i],row[2][i]]})
         j+=1
-    ordination.append("\n")
-    ordination.append("Biplot\t0\t0\n\n")
-    ordination.append("Site constraints\t0\t0\n")
+    ordination.write("\n")
+    ordination.write("Biplot\t0\t0\n\n")
+    ordination.write("Site constraints\t0\t0\n")
+	ordination_results = OrdinationResults.read(ordination)
+	ordination.close
     
     # Distance matrix (euclidean)
     dm_0 = []
@@ -94,4 +99,5 @@ def _simulation_data(data, ids):
     metadata = [md_0,md_1]
     for row in md:
         metadata.append(row)
-    return ordination, distance_matrix
+	#ADD FUNCTIONALITY TO RETURN MAPPING FILE
+    return ordination_results, distance_matrix
