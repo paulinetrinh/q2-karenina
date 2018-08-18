@@ -26,11 +26,11 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
     #pass items to k_OU, 
     #ensure that metadata is saved with both PcOAResults, and DistanceMatrix!
     k_OU.check_perturbation_timepoint(perturbation_timepoint,n_timepoints)
-    individual_base_params = {"lambda":opts.L,"delta":opts.delta,
-		"interindividual_variation":opts.interindividual_variation}
-    if opts.fixed_start_pos:
+    individual_base_params = {"lambda":lam,"delta":delta,
+		"interindividual_variation":interindividual_variation}
+    if fixed_start_pos:
         try:
-            x,y,z = map(float,opts.fixed_start_pos.split(","))
+            x,y,z = map(float,fixed_start_pos.split(","))
             individual_base_params['x']=x
             individual_base_params['y']=y
             individual_base_params['z']=z
