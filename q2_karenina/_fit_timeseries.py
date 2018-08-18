@@ -18,7 +18,9 @@ from q2_types.ordination import PCoAResults
 
 def fit_timeseries(output_dir: str, pcoa : PCoAResults, metadata : qiime2.Metadata,
 					method : str, individual_col: str, timepoint_col: str, treatment_col: str):
-    #Parse in pcoa and metadata as dataframes and inject to k_fit_timeseries
+    pcoa = pcoa.to_dataframe()
+	metadata = metadata.to_dataframe()
+	#Parse in pcoa and metadata as dataframes and inject to k_fit_timeseries
 	pass
 
 
