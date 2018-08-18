@@ -42,7 +42,7 @@ def spatial_ornstein_uhlenbeck(perturbation_fp:str, treatment_names:str, n_indiv
             raise ValueError('Problem with --fixed_start_pos. Got %s Please supply x,y,z values in the range (-1,1) separated by commas and '+
 				'enclosed in quotes. Example: "0.1,-0.2,0.3"'% fixed_start_pos)
     print(perturbation_fp)
-	perturbations = k_OU.parse_perturbation_file(perturbation_fp, perturbation_timepoint, perturbation_duration)
+    perturbations = k_OU.parse_perturbation_file(perturbation_fp, perturbation_timepoint, perturbation_duration)
     treatments = [[], perturbations]
     treatment_names = treatment_names.split(",")
     n_individuals = list(map(int,n_individuals.split(",")))
