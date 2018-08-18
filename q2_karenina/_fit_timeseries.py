@@ -74,7 +74,7 @@ def _parse_metadata(metadata, individual_col, timepoint_col, treatment_col, site
 	df = metadata
 	# Drop any rows that are informational
     while df.iloc[0][0].startswith("#"):
-        df.drop(df.index[:1], inplace=True)
+	    df.drop(df.index[:1], inplace=True)
 
     # Combine Individual columns if multiple subject identifiers defined (Such as individual and site)
     if "," in individual_col:
