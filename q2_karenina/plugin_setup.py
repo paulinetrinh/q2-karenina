@@ -48,7 +48,6 @@ plugin.methods.register_function(
 )
 """
 	
-
 plugin.visualizers.register_function(
     function=fit_timeseries,
     inputs={
@@ -85,7 +84,6 @@ plugin.visualizers.register_function(
 	    'treatment_col':Str
     },
 	parameter_descriptions = {
-	    'method':'global optimization method',
 	    'metadata':'Sample metadata',
 	    'individual_col':'individual column identifier',
 	    'timepoint_col':'timepoint column identifier',
