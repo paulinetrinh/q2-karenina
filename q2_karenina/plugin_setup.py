@@ -1,11 +1,11 @@
 import qiime2.plugin
 
 import q2_karenina
-#from q2_karenina._spatial_ornstein_uhlenbeck import spatial_ornstien_uhlenbeck
+from q2_karenina._spatial_ornstein_uhlenbeck import spatial_ornstien_uhlenbeck
 from q2_karenina._fit_timeseries import fit_timeseries
 from q2_karenina._visualization import visualization
 from q2_types.ordination import PCoAResults
-from qiime2.plugin import Metadata, Str, Choices
+from qiime2.plugin import Metadata, Str, Choices, Int, Float
 
 
 plugin = qiime2.plugin.Plugin(
@@ -22,31 +22,59 @@ plugin = qiime2.plugin.Plugin(
     citation_text=None
 )
 
-"""
 plugin.methods.register_function(
 	function=spatial_ornstien_uhlenbeck,
+	"""
 	inputs={
 		#how about some input?
 	},
+	"""
 	parameters={
-		#how about some parameters?
+		'perturbation_fp':Str,
+		'treatment_names':Str,
+		'n_individuals':Str,
+		'n_timepoints':Int,
+		'perturbation_timepoint':Int,
+		'perturbation_duration':Int,
+		'interindividual_variation':Float,
+		'delta':Float,
+		'lam':Float,
+		'fixed_start_pos':Str
 	},
 	outputs=[
-		#metadata and pcoa
+		('ordination', PCoAResults),
+		('metadata', Metadata),
+		('distance_matrix', DistanceMatrix)
 	],
+	"""
 	input_descriptions{
 		#how about descriptions?
 	},
+	"""
 	parameter_descriptions{
-		#how about descriptions?
+		'perturbation_fp':'filepath for perturbation parameters for simulation results',
+		'treatment_names':'[\'control,destabalizing_treatment\'] Names for simulation treatments',
+		'n_individuals':'[\'35,35\'] Number of individuals per treatment',
+		'n_timepoints':'[\'10\'] Number of simulation timepoints',
+		'perturbation_timepoint':'[\'5\'] Timepoint at which to apply treatment (<n_timepoints)',
+		'perturbation_duration':'[\'100\'] Duration of perturbation.',
+		'interindividual_variation':'[\'0.01\']Starting variability between individuals',
+		'delta':'[\'0.25\'] Starting Delta parameter for Brownian Motion/ OU models. '
+			+'Higher values indicate greater variability over time',
+		'lam':'[\'0.20\'] Starting Lambda value for OU process. '
+			+'Higher values indicate a greater tendancy to revert to the mean value.',
+		'fixed_start_pos':'Starting x,y,z position for each point. '
+			+'If not defined, starting positions will be randomized based on '
+			+'interindividual_variation; type: string, eg: [\'0.0,0.1,0.2\'].'
 	},
 	output_descriptions={
-		#how about descriptions?
+		'ordination': 'Sample PCoA file containing simulation data',
+		'metadata': 'Sample Metadata file containing simulation data',
+		'distance_matrix': 'Sample Distance Matrix containing simulation data'
 	},
 	name='Spatial Ornstein Uhlenbeck microbial community simulation',
 	description=("DESCRIPTION FROM ORIGINAL SCRIPT")
 )
-"""
 	
 plugin.visualizers.register_function(
     function=fit_timeseries,
@@ -89,6 +117,6 @@ plugin.visualizers.register_function(
 	    'timepoint_col':'timepoint column identifier',
 	    'treatment_col':'treatment column identifier'
     },
-    name='Fit OU Models to PCoA Ordination output',
+    name='Generates 3D animations of PCoA Timeseries',
     description='This visualizer generates 3D animations of PCoA Timeseries.'
 )
