@@ -41,7 +41,7 @@ plugin.methods.register_function(
 		('metadata', Metadata),
 		('distance_matrix', DistanceMatrix)
 	],
-	parameter_descriptions{
+	parameter_descriptions={
 		'perturbation_fp':'filepath for perturbation parameters for simulation results',
 		'treatment_names':'[\'control,destabalizing_treatment\'] Names for simulation treatments',
 		'n_individuals':'[\'35,35\'] Number of individuals per treatment',
