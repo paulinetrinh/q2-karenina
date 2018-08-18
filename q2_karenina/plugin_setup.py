@@ -75,7 +75,7 @@ plugin.methods.register_function(
 )
 """
 plugin.visualizers.register_function(
-	function=spatial_ornstein_uhlenbeck,
+	function=spatial_ornstein_uhlenbeck_v,
 	inputs={},
 	parameters={
 		'perturbation_fp':Str,
