@@ -20,14 +20,14 @@ from q2_types.ordination import PCoAResults
 def visualization(output_dir: str, pcoa : str, metadata : str,
 				 individual_col: str, timepoint_col: str, treatment_col: str):
     #Parse in pcoa and metadata as dataframes and inject to k_visualization
-	site = _parse_pcoa(pcoa)
-	df = _parse_metadata(metadata, individual_col, timepoint_col, treatment_col, site)
-	i=0
-	colors = ['fuchsia', 'cyan', 'darkorange', 'blue', 'yellow']
+    site = _parse_pcoa(pcoa)
+    df = _parse_metadata(metadata, individual_col, timepoint_col, treatment_col, site)
+    i=0
+    colors = ['fuchsia', 'cyan', 'darkorange', 'blue', 'yellow']
     tx = treatment_col
     treatments = df[tx].unique()
     while len(colors) < len(treatments):
-		colors.append('lightgray')
+	    colors.append('lightgray')
 
     for row in df.iterrows():
         curr_subject_id = "%s_%i" % (df[individual_col], i)
