@@ -148,7 +148,7 @@ If the visualization was successful, you should see the following console respon
     Saved Visualization to: /home/qiime2/simulation_ou_visualization/visualization.qzv
 ```
 
-Within the visualization.qzv, we have two output data files which contain our modeled timeseries results. With input parameters being optimized to sigma/ dekta: 0.25, lambda: 0.20, theta/ mu: 0.00, the fit_timeseries modeled individuals and cohorts, which can be found here:
+Within the visualization.qzv, we have two output data files which contain our modeled timeseries results. With input parameters being optimized to sigma/ delta: 0.25, lambda: 0.20, theta/ mu: 0.00, the fit_timeseries modeled individuals and cohorts, which can be found here:
 
 * https://github.com/SLPeoples/q2-karenina/blob/master/data/simulation_ou_fit_ts/individual_fit_timeseries.csv
 
