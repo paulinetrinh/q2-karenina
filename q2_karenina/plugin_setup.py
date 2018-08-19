@@ -22,7 +22,7 @@ plugin = qiime2.plugin.Plugin(
     "and figures.",
     citation_text=None
 )
-"""
+""""""
 # Method omitted temporarily until:
     # Output can be in qiime2 Metadata, PcOAResults, and DistanceMatrix format
 
@@ -71,7 +71,7 @@ plugin.methods.register_function(
 				+'Ornstein Uhlenbeck models. This are similar to Brownian Motion'
 				+'with the exception that they include reversion to a mean.')
 )
-"""
+""""""
 	
 # Modify to allow for PCoAResults as input	
 plugin.visualizers.register_function(
