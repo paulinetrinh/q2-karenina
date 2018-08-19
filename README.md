@@ -90,6 +90,7 @@ _____
 ```
 </p>
 </details>
+
 #### qiime karenina fit-timeseries example
 <details><summary>Expand</summary>
 <p>
