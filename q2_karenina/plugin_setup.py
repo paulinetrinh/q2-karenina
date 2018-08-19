@@ -80,7 +80,7 @@ plugin.visualizers.register_function(
         #'pcoa' : PCoAResults
     },
     parameters={
-        'pcoa':Str
+        'pcoa':Str,
 		'method':Str % Choices({'basinhopping'}),
 	    'metadata':Str,
 	    'individual_col':Str,
