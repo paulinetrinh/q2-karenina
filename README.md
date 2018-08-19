@@ -154,29 +154,30 @@ Options:
 ### qiime karenina visualization --help
 <details><summary>Expand</summary>
 <p>
+
 ## UNDER CONSTRUCTION - PLEASE REFER TO karenina.visualization
 ```
-Usage: qiime karenina visualization [OPTIONS]
+  Usage: qiime karenina visualization [OPTIONS]
 
-  This visualizer generates 3D animations of PCoA Timeseries.
+    This visualizer generates 3D animations of PCoA Timeseries.
 
-Options:
-  --p-pcoa TEXT                   filepath to PCoA results  [required]
-  --p-metadata TEXT               filepath to Sample metadata  [required]
-  --p-individual-col TEXT         individual column identifier  [required]
-  --p-timepoint-col TEXT          timepoint column identifier  [required]
-  --p-treatment-col TEXT          treatment column identifier  [required]
-  --o-visualization VISUALIZATION PATH
-                                  [required if not passing --output-dir]
-  --output-dir DIRECTORY          Output unspecified results to a directory
-  --cmd-config PATH               Use config file for command options
-  --verbose                       Display verbose output to stdout and/or
-                                  stderr during execution of this action.
-                                  [default: False]
-  --quiet                         Silence output if execution is successful
-                                  (silence is golden).  [default: False]
-  --citations                     Show citations and exit.
-  --help                          Show this message and exit.
+  Options:
+    --p-pcoa TEXT                   filepath to PCoA results  [required]
+    --p-metadata TEXT               filepath to Sample metadata  [required]
+    --p-individual-col TEXT         individual column identifier  [required]
+    --p-timepoint-col TEXT          timepoint column identifier  [required]
+    --p-treatment-col TEXT          treatment column identifier  [required]
+    --o-visualization VISUALIZATION PATH
+                                    [required if not passing --output-dir]
+    --output-dir DIRECTORY          Output unspecified results to a directory
+    --cmd-config PATH               Use config file for command options
+    --verbose                       Display verbose output to stdout and/or
+                                    stderr during execution of this action.
+                                    [default: False]
+    --quiet                         Silence output if execution is successful
+                                    (silence is golden).  [default: False]
+    --citations                     Show citations and exit.
+    --help                          Show this message and exit.
 ```
 </p>
 </details>
