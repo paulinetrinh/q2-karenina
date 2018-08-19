@@ -8,15 +8,18 @@ over time using simple Ornstein-Uhlenbeck (OU) models.
 
 ## Anna Karenina Principle
 TODO: Explain AKP
+
 https://en.wikipedia.org/wiki/Anna_Karenina_principle
 
 ## Bronian Motion
 TODO: Explain Brownian Motion Models
+
 https://en.wikipedia.org/wiki/Brownian_motion
 https://en.wikipedia.org/wiki/Wiener_process
 
 ## Ornstein Uhlenbeck
 TODO: Explain Ornstein Uhlenbeck Models
+
 https://en.wikipedia.org/wiki/Ornstein%E2%80%93Uhlenbeck_process
 
 ## Usage & Installation
