@@ -16,10 +16,10 @@ import qiime2
 import q2templates
 from q2_types.ordination import PCoAResults
 
-def fit_timeseries(output_dir: str, pcoa : PCoAResults, metadata : qiime2.Metadata,
-					method : str, individual_col: str, timepoint_col: str, treatment_col: str):
-    pcoa = PCoAResults.read(pcoa).to_dataframe()
-    metadata = metadata.to_dataframe()
+def fit_timeseries(output_dir: str, pcoa : str, metadata:str, method : str, 
+                individual_col: str, timepoint_col: str, treatment_col: str):
+    #pcoa = PCoAResults.read(pcoa).to_dataframe()
+    #metadata = metadata.to_dataframe()
     site = _parse_pcoa(pcoa)
     input = _parse_metadata(metadata, individual_col, timepoint_col, treatment_col, site)
     if opts.treatment is not None:
@@ -32,7 +32,8 @@ def fit_timeseries(output_dir: str, pcoa : PCoAResults, metadata : qiime2.Metada
 
 def _parse_pcoa(pcoa):
     # Parse PCoA Contents
-    lines = pcoa.readlines()
+    pcoa = open(pcoa,"r")
+	lines = pcoa.readlines()
     i = 0
     for line in lines:
         line = line.decode("utf-8")
@@ -70,7 +71,7 @@ def _parse_pcoa(pcoa):
     return site
 
 def _parse_metadata(metadata, individual_col, timepoint_col, treatment_col, site):
-    df = metadata
+    df = DataFrame.from_csv(metadata,sep="\t")
     # Drop any rows that are informational
     while df.iloc[0][0].startswith("#"):
 	    df.drop(df.index[:1], inplace=True)

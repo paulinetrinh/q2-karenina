@@ -73,21 +73,24 @@ plugin.methods.register_function(
 )
 """
 	
+# Modify to allow for PCoAResults as input	
 plugin.visualizers.register_function(
     function=fit_timeseries,
     inputs={
-        'pcoa' : PCoAResults
+        #'pcoa' : PCoAResults
     },
     parameters={
-        'method':Str % Choices({'basinhopping'}),
-	    'metadata':Metadata,
+        'pcoa':Str
+		'method':Str % Choices({'basinhopping'}),
+	    'metadata':Str,
 	    'individual_col':Str,
 	    'timepoint_col':Str,
 	    'treatment_col':Str
     },
 	parameter_descriptions = {
-	    'method':'global optimization method',
-	    'metadata':'Sample metadata',
+	    'pcoa':'filepath to PCoA results'
+		'method':'global optimization method',
+	    'metadata':'filepath to Sample metadata',
 	    'individual_col':'individual column identifier',
 	    'timepoint_col':'timepoint column identifier',
 	    'treatment_col':'treatment column identifier'
