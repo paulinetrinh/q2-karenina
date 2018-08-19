@@ -41,7 +41,7 @@ def visualization(output_dir: str, pcoa : str, metadata : str,
         curr_subject = Individual(subject_id=curr_subject_id,
                                   params=params, \
                                   metadata={treatment_col: df[treatment_col]}, \
-                                  interindividual_variation=.01, verbose=verbose)
+                                  interindividual_variation=.01)
         ind.append(curr_subject)
         i+=1
 
