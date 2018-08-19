@@ -28,9 +28,10 @@ qiime dev refresh-cache
 ### qiime karenina --help
 <details><summary>Expand</summary>
 <p>
-  ```
+  
+```
   Usage: qiime karenina [OPTIONS] COMMAND [ARGS]...
-
+  
     Description: This script simulates microbiome change over time using
     Ornstein-Uhlenbeck (OU) models.  These are similar to Brownian motion
     models, with the exception that they include reversion to a mean. Output
@@ -52,37 +53,46 @@ qiime dev refresh-cache
                                 simulation
     visualization               Generates 3D animations of PCoA Timeseries
   ```
+  
 </p>
 </details>
 
 ### qiime karenina fit-timeseries --help
+<details><summary>Expand</summary>
+<p>
+  
 ```
-Usage: qiime karenina fit-timeseries [OPTIONS]
+  Usage: qiime karenina fit-timeseries [OPTIONS]
+  
+    This visualizer generates OU model parameters for PCoA outputdata, for
+    each individual and each defined treatment cohort.
 
-  This visualizer generates OU model parameters for PCoA outputdata, for
-  each individual and each defined treatment cohort.
-
-Options:
-  --p-pcoa TEXT                   filepath to PCoA results  [required]
-  --p-metadata TEXT               filepath to Sample metadata  [required]
-  --p-method [basinhopping]       global optimization method  [required]
-  --p-individual-col TEXT         individual column identifier  [required]
-  --p-timepoint-col TEXT          timepoint column identifier  [required]
-  --p-treatment-col TEXT          treatment column identifier  [required]
-  --o-visualization VISUALIZATION PATH
-                                  [required if not passing --output-dir]
-  --output-dir DIRECTORY          Output unspecified results to a directory
-  --cmd-config PATH               Use config file for command options
-  --verbose                       Display verbose output to stdout and/or
-                                  stderr during execution of this action.
-                                  [default: False]
-  --quiet                         Silence output if execution is successful
-                                  (silence is golden).  [default: False]
-  --citations                     Show citations and exit.
-  --help                          Show this message and exit.
-  ```
+  Options:
+    --p-pcoa TEXT                   filepath to PCoA results  [required]
+    --p-metadata TEXT               filepath to Sample metadata  [required]
+    --p-method [basinhopping]       global optimization method  [required]
+    --p-individual-col TEXT         individual column identifier  [required]
+    --p-timepoint-col TEXT          timepoint column identifier  [required]
+    --p-treatment-col TEXT          treatment column identifier  [required]
+    --o-visualization VISUALIZATION PATH
+                                    [required if not passing --output-dir]
+    --output-dir DIRECTORY          Output unspecified results to a directory
+    --cmd-config PATH               Use config file for command options
+    --verbose                       Display verbose output to stdout and/or
+                                    stderr during execution of this action.
+                                    [default: False]
+    --quiet                         Silence output if execution is successful
+                                    (silence is golden).  [default: False]
+    --citations                     Show citations and exit.
+    --help                          Show this message and exit.
+```
+</p>
+</details>
 
 ### qiime karenina spatial-ornstein-uhlenbeck --help
+<details><summary>Expand</summary>
+<p>
+
 ## UNDER CONSTRUCTION - PLEASE REFER TO karenina.spatial_ornstein_uhlenbeck
 ```
 Usage: qiime karenina spatial-ornstein-uhlenbeck [OPTIONS]
@@ -137,9 +147,13 @@ Options:
                                   (silence is golden).  [default: False]
   --citations                     Show citations and exit.
   --help                          Show this message and exit.
-  ```
+```
+</p>
+</details>
 
 ### qiime karenina visualization --help
+<details><summary>Expand</summary>
+<p>
 ## UNDER CONSTRUCTION - PLEASE REFER TO karenina.visualization
 ```
 Usage: qiime karenina visualization [OPTIONS]
@@ -164,3 +178,5 @@ Options:
   --citations                     Show citations and exit.
   --help                          Show this message and exit.
 ```
+</p>
+</details>
