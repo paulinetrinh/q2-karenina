@@ -26,30 +26,34 @@ qiime dev refresh-cache
 ```
 
 ### qiime karenina --help
-```
-Usage: qiime karenina [OPTIONS] COMMAND [ARGS]...
+<details><summary>Expand</summary>
+<p>
+  ```
+  Usage: qiime karenina [OPTIONS] COMMAND [ARGS]...
 
-  Description: This script simulates microbiome change over time using
-  Ornstein-Uhlenbeck (OU) models.  These are similar to Brownian motion
-  models, with the exception that they include reversion to a mean. Output
-  is a tab-delimited data table and figures.
+    Description: This script simulates microbiome change over time using
+    Ornstein-Uhlenbeck (OU) models.  These are similar to Brownian motion
+    models, with the exception that they include reversion to a mean. Output
+    is a tab-delimited data table and figures.
 
-  Plugin website: https://github.com/zaneveld/karenina
+    Plugin website: https://github.com/zaneveld/karenina
 
-  Getting user support: Please post to the QIIME 2 forum for help with this
-  plugin: https://forum.qiime2.org
+    Getting user support: Please post to the QIIME 2 forum for help with this
+    plugin: https://forum.qiime2.org
 
-Options:
-  --version    Show the version and exit.
-  --citations  Show citations and exit.
-  --help       Show this message and exit.
+  Options:
+    --version    Show the version and exit.
+    --citations  Show citations and exit.
+    --help       Show this message and exit.
 
-Commands:
-  fit-timeseries              Fit OU Models to PCoA Ordination output
-  spatial-ornstein-uhlenbeck  Spatial Ornstein Uhlenbeck microbial community
-                              simulation
-  visualization               Generates 3D animations of PCoA Timeseries
-```
+  Commands:
+    fit-timeseries              Fit OU Models to PCoA Ordination output
+    spatial-ornstein-uhlenbeck  Spatial Ornstein Uhlenbeck microbial community
+                                simulation
+    visualization               Generates 3D animations of PCoA Timeseries
+  ```
+</p>
+</details>
 
 ### qiime karenina fit-timeseries --help
 ```
@@ -79,6 +83,7 @@ Options:
   ```
 
 ### qiime karenina spatial-ornstein-uhlenbeck --help
+## UNDER CONSTRUCTION - PLEASE REFER TO karenina.spatial_ornstein_uhlenbeck
 ```
 Usage: qiime karenina spatial-ornstein-uhlenbeck [OPTIONS]
 
@@ -135,6 +140,7 @@ Options:
   ```
 
 ### qiime karenina visualization --help
+## UNDER CONSTRUCTION - PLEASE REFER TO karenina.visualization
 ```
 Usage: qiime karenina visualization [OPTIONS]
 
