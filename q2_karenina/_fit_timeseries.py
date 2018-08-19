@@ -33,7 +33,7 @@ def fit_timeseries(output_dir: str, pcoa : str, metadata:str, method : str,
 def _parse_pcoa(pcoa):
     # Parse PCoA Contents
     pcoa = open(pcoa,"r")
-	lines = pcoa.readlines()
+    lines = pcoa.readlines()
     i = 0
     for line in lines:
         line = line.decode("utf-8")
