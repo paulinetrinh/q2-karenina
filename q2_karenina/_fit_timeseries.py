@@ -34,7 +34,8 @@ def _parse_pcoa(pcoa):
     # Parse PCoA Contents
     pcoa = open(pcoa,"rb")
     lines = pcoa.readlines()
-    i = 0
+    site = []
+	i = 0
     for line in lines:
         line = line.decode("utf-8")
         if line.startswith("Eigvals"):
