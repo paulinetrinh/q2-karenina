@@ -16,6 +16,7 @@ import qiime2
 import q2templates
 from q2_types.ordination import PCoAResults
 import pandas as pd
+import os
 
 def fit_timeseries(output_dir: str, pcoa : str, metadata:str, method : str, 
                 individual_col: str, timepoint_col: str, treatment_col: str) -> None:
@@ -27,10 +28,10 @@ def fit_timeseries(output_dir: str, pcoa : str, metadata:str, method : str,
 	    treatment_col = None
     if treatment_col is not None:
         output, cohort_output = k_fit_timeseries.fit_input(input, individual_col, timepoint_col, treatment_col, method)
-        cohort_output.to_csv(output_dir+"cohort_fit_timeseries.csv", index=False)
+        cohort_output.to_csv(os.path.join(output_dir,"cohort_fit_timeseries.csv"), index=False)
     else:
         output = fit_input(input, individual_col, timepoint_col, treatment_col, method)
-    output.to_csv(output_dir+"individual_fit_timeseries.csv", index=False)
+    output.to_csv(os.path.join(output_dir,"individual_fit_timeseries.csv"), index=False)
 	
 
 def _parse_pcoa(pcoa):
