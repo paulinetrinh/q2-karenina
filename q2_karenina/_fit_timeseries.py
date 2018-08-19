@@ -23,11 +23,13 @@ def fit_timeseries(output_dir: str, pcoa : str, metadata:str, method : str,
     #metadata = metadata.to_dataframe()
     site = _parse_pcoa(pcoa)
     input = _parse_metadata(metadata, individual_col, timepoint_col, treatment_col, site)
-    if opts.treatment is not None:
-        output, cohort_output = k_fit_timeseries.fit_input(input, opts.individual, opts.timepoint, opts.treatment, opts.fit_method)
+    if 'None' in treatment_col:
+	    treatment_col = None
+    if treatment_col is not None:
+        output, cohort_output = k_fit_timeseries.fit_input(input, individual_col, timepoint_col, treatment_col, method)
         cohort_output.to_csv(output_dir+"/cohort_fit_timeseries.csv", index=False)
     else:
-        output = fit_input(input, opts.individual, opts.timepoint, opts.treatment, opts.fit_method)
+        output = fit_input(input, individual_col, timepoint_col, treatment_col, method)
     output.to_csv(output_dir+"/individual_fit_timeseries.csv", index=False)
 	
 
@@ -101,11 +103,11 @@ def _parse_metadata(metadata, individual_col, timepoint_col, treatment_col, site
         inds = []
         for row in df_ind.iteritems():
             inds.append(row[1].replace(" ","-"))
-        df_ind = pd.DataFrame({individual:inds})
+        df_ind = pd.DataFrame({individual_col:inds})
         # Reindex to match dataframes to be merged
         df_ind.index += 1
     else:
-        df_ind = df[individual]
+        df_ind = df[individual_col]
 
     df_tp = df[timepoint_col]
     
