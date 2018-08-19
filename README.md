@@ -6,14 +6,18 @@ Simulation and modeling tools for studying Anna Karenina effects in animal micro
 This package aims to develop tools for modeling microbiome variability in disease.  Initial versions focus on simulating microbiome change 
 over time using simple Ornstein-Uhlenbeck (OU) models.  
 
-## Anna Karenina Effects
-TODO: Explain AKE
+## Anna Karenina Principle
+TODO: Explain AKP
+https://en.wikipedia.org/wiki/Anna_Karenina_principle
 
 ## Bronian Motion
 TODO: Explain Brownian Motion Models
+https://en.wikipedia.org/wiki/Brownian_motion
+https://en.wikipedia.org/wiki/Wiener_process
 
 ## Ornstein Uhlenbeck
 TODO: Explain Ornstein Uhlenbeck Models
+https://en.wikipedia.org/wiki/Ornstein%E2%80%93Uhlenbeck_process
 
 ## Usage & Installation
 This package ports karenina into Qiime2, run the following commands to enable karenina and its functions within q2cli.
