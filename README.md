@@ -6,6 +6,15 @@ Simulation and modeling tools for studying Anna Karenina effects in animal micro
 This package aims to develop tools for modeling microbiome variability in disease.  Initial versions focus on simulating microbiome change 
 over time using simple Ornstein-Uhlenbeck (OU) models.  
 
+## Anna Karenina Effects
+TODO: Explain AKE
+
+## Bronian Motion
+TODO: Explain Brownian Motion Models
+
+## Ornstein Uhlenbeck
+TODO: Explain Ornstein Uhlenbeck Models
+
 ## Usage & Installation
 This package ports karenina into Qiime2, run the following commands to enable karenina and its functions within q2cli.
 
@@ -140,6 +149,12 @@ If the visualization was successful, you should see the following console respon
 ```
 </p>
 </details>
+
+Within the visualization.qzv, we have two output data files which contain our modeled timeseries results. With input parameters being optimized to sigma/ mu: 0.00, lambda: 0.20, theta/ delta: .25, the fit_timeseries modeled individuals and cohorts, which can be found here:
+
+* https://github.com/SLPeoples/q2-karenina/blob/master/data/simulation_ou_fit_ts/individual_fit_timeseries.csv
+
+* https://github.com/SLPeoples/q2-karenina/blob/master/data/simulation_ou_fit_ts/cohort_fit_timeseries.csv
 
 _____
 
