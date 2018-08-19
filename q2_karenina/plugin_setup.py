@@ -3,7 +3,7 @@ import qiime2.plugin
 import q2_karenina
 #from q2_karenina._spatial_ornstein_uhlenbeck import spatial_ornstein_uhlenbeck
 from q2_karenina._fit_timeseries import fit_timeseries
-#from q2_karenina._visualization import visualization
+from q2_karenina._visualization import visualization
 from q2_types.ordination import PCoAResults
 from q2_types.distance_matrix import DistanceMatrix
 from qiime2.plugin import Metadata, Str, Choices, Int, Float
@@ -99,22 +99,22 @@ plugin.visualizers.register_function(
     description='This visualizer generates OU model parameters for PCoA output'
                 'data, for each individual and each defined treatment cohort.'
 )
-"""
-# Temporarily omitted until visualization functions
 
 plugin.visualizers.register_function(
     function=visualization,
     inputs={
-        'pcoa' : PCoAResults
+        #'pcoa' : PCoAResults
     },
     parameters={
-	    'metadata':Metadata,
+	    'pcoa':Str
+		'metadata':Str,
 	    'individual_col':Str,
 	    'timepoint_col':Str,
 	    'treatment_col':Str
     },
 	parameter_descriptions = {
-	    'metadata':'Sample metadata',
+	    'pcoa':'filepath to PCoA results'
+	    'metadata':'filepath to Sample metadata',
 	    'individual_col':'individual column identifier',
 	    'timepoint_col':'timepoint column identifier',
 	    'treatment_col':'treatment column identifier'
@@ -122,4 +122,3 @@ plugin.visualizers.register_function(
     name='Generates 3D animations of PCoA Timeseries',
     description='This visualizer generates 3D animations of PCoA Timeseries.'
 )
-"""
