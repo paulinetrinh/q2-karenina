@@ -135,6 +135,8 @@ If the visualization was successful, you should see the following console respon
 ```
     Saved Visualization to: /home/qiime2/simulation_ou_visualization/visualization.qzv
 ```
+</p>
+</details>
 
 _____
 
@@ -228,5 +230,6 @@ _____
     --citations                     Show citations and exit.
     --help                          Show this message and exit.
 ```
+
 </p>
 </details>
