@@ -57,7 +57,9 @@ qiime dev refresh-cache
 </p>
 </details>
 
-### qiime karenina fit-timeseries --help
+_____
+
+#### qiime karenina fit-timeseries --help
 <details><summary>Expand</summary>
 <p>
   
@@ -88,70 +90,117 @@ qiime dev refresh-cache
 ```
 </p>
 </details>
+#### qiime karenina fit-timeseries example
+<details><summary>Expand</summary>
+<p>
 
-### qiime karenina spatial-ornstein-uhlenbeck --help
+Utilizing simulation data generated from running spatial-ornstein-uhlenbeck, the following files are used as the PCoA and Metadata files, respectively.
+    * https://github.com/SLPeoples/q2-karenina/blob/master/data/ordination.txt
+    * https://github.com/SLPeoples/q2-karenina/blob/master/data/metadata.tsv
+
+We make sure that the files are saved in the appropriate place, in this instance, I have them saved to the qiime2 home directory, so we define the pcoa and metadata parameters to match these filepaths. These must be direct filepaths to PCoA and Metadata files, and not Qiime2 artifacts.
+```
+    --p-pcoa /home/qiime2/ordination.txt
+    --p-metadata /home/qiime2/metadata.tsv
+```
+
+Currently the only supported optimization method is basinhopping, so we define our method as follows:
+```
+    --p-method basinhopping
+```
+
+Within the metadata file, we see that the column identifying individuals, timepoints, and treatment are:
+```
+        Subject, Timepoint, Treatment
+```
+
+We define the following parameters to match these column names.
+```
+    --p-individual-col Subject
+    --p-timepoint-col Timepoint
+    --p-treatment-col Treatment
+```
+
+We define our output directory as a new directory that is appropriate for the qiime2 action that is being completed.
+```
+    --output-dir /home/qiime2/simulation_ou_fit_ts/
+```
+
+Now that we've set up our parameters, we can run our qiime2 visualization.
+```
+    qiime karenina fit-timeseries --p-pcoa /home/qiime2/ordination.txt --p-metadata /home/qiime2/metadata.tsv --p-method basinhopping --p-individual-col Subject --p-timepoint-col Timepoint --p-treatment-col Treatment --output-dir /home/qiime2/simulation_ou_fit_ts/
+```
+
+If the visualization was successful, you should see the following console response:
+```
+    Saved Visualization to: /home/qiime2/simulation_ou_visualization/visualization.qzv
+```
+
+_____
+
+#### qiime karenina spatial-ornstein-uhlenbeck --help
 <details><summary>Expand</summary>
 <p>
 
 ## UNDER CONSTRUCTION - PLEASE REFER TO karenina.spatial_ornstein_uhlenbeck
 ```
-Usage: qiime karenina spatial-ornstein-uhlenbeck [OPTIONS]
+  Usage: qiime karenina spatial-ornstein-uhlenbeck [OPTIONS]
 
-  This method simulates microbial behavior over time usingOrnstein Uhlenbeck
-  models. This are similar to Brownian Motionwith the exception that they
-  include reversion to a mean.
+    This method simulates microbial behavior over time usingOrnstein Uhlenbeck
+    models. This are similar to Brownian Motionwith the exception that they
+    include reversion to a mean.
 
-Options:
-  --p-perturbation-fp TEXT        filepath for perturbation parameters for
-                                  simulation results  [required]
-  --p-treatment-names TEXT        ['control,destabalizing_treatment'] Names
-                                  for simulation treatments  [required]
-  --p-n-individuals TEXT          ['35,35'] Number of individuals per
-                                  treatment  [required]
-  --p-n-timepoints INTEGER        ['10'] Number of simulation timepoints
-                                  [required]
-  --p-perturbation-timepoint INTEGER
-                                  ['5'] Timepoint at which to apply treatment
-                                  (<n_timepoints)  [required]
-  --p-perturbation-duration INTEGER
-                                  ['100'] Duration of perturbation.
-                                  [required]
-  --p-interindividual-variation FLOAT
-                                  ['0.01']Starting variability between
-                                  individuals  [required]
-  --p-delta FLOAT                 ['0.25'] Starting Delta parameter for
-                                  Brownian Motion/ OU models. Higher values
-                                  indicate greater variability over time
-                                  [required]
-  --p-lam FLOAT                   ['0.20'] Starting Lambda value for OU
-                                  process. Higher values indicate a greater
-                                  tendancy to revert to the mean value.
-                                  [required]
-  --p-fixed-start-pos TEXT        Starting x,y,z position for each point. If
-                                  not defined, starting positions will be
-                                  randomized based on
-                                  interindividual_variation; type: string, eg:
-                                  ['0.0,0.1,0.2'].  [required]
-  --o-ordination ARTIFACT PATH PCoAResults
-                                  Sample PCoA file containing simulation data
-                                  [required if not passing --output-dir]
-  --o-distance-matrix ARTIFACT PATH DistanceMatrix
-                                  Sample Distance Matrix containing simulation
-                                  data  [required if not passing --output-dir]
-  --output-dir DIRECTORY          Output unspecified results to a directory
-  --cmd-config PATH               Use config file for command options
-  --verbose                       Display verbose output to stdout and/or
-                                  stderr during execution of this action.
-                                  [default: False]
-  --quiet                         Silence output if execution is successful
-                                  (silence is golden).  [default: False]
-  --citations                     Show citations and exit.
-  --help                          Show this message and exit.
+  Options:
+    --p-perturbation-fp TEXT        filepath for perturbation parameters for
+                                    simulation results  [required]
+    --p-treatment-names TEXT        ['control,destabalizing_treatment'] Names
+                                    for simulation treatments  [required]
+    --p-n-individuals TEXT          ['35,35'] Number of individuals per
+                                    treatment  [required]
+    --p-n-timepoints INTEGER        ['10'] Number of simulation timepoints
+                                    [required]
+    --p-perturbation-timepoint INTEGER
+                                    ['5'] Timepoint at which to apply treatment
+                                    (<n_timepoints)  [required]
+    --p-perturbation-duration INTEGER
+                                    ['100'] Duration of perturbation.
+                                    [required]
+    --p-interindividual-variation FLOAT
+                                    ['0.01']Starting variability between
+                                    individuals  [required]
+    --p-delta FLOAT                 ['0.25'] Starting Delta parameter for
+                                    Brownian Motion/ OU models. Higher values
+                                    indicate greater variability over time
+                                    [required]
+    --p-lam FLOAT                   ['0.20'] Starting Lambda value for OU
+                                    process. Higher values indicate a greater
+                                    tendancy to revert to the mean value.
+                                    [required]
+    --p-fixed-start-pos TEXT        Starting x,y,z position for each point. If
+                                    not defined, starting positions will be
+                                    randomized based on
+                                    interindividual_variation; type: string, eg:
+                                    ['0.0,0.1,0.2'].  [required]
+    --o-ordination ARTIFACT PATH PCoAResults
+                                    Sample PCoA file containing simulation data
+                                    [required if not passing --output-dir]
+    --o-distance-matrix ARTIFACT PATH DistanceMatrix
+                                    Sample Distance Matrix containing simulation
+                                    data  [required if not passing --output-dir]
+    --output-dir DIRECTORY          Output unspecified results to a directory
+    --cmd-config PATH               Use config file for command options
+    --verbose                       Display verbose output to stdout and/or
+                                    stderr during execution of this action.
+                                    [default: False]
+    --quiet                         Silence output if execution is successful
+                                    (silence is golden).  [default: False]
+    --citations                     Show citations and exit.
+    --help                          Show this message and exit.
 ```
 </p>
 </details>
 
-### qiime karenina visualization --help
+#### qiime karenina visualization --help
 <details><summary>Expand</summary>
 <p>
 
