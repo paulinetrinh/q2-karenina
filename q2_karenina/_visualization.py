@@ -16,6 +16,7 @@ import pkg_resources
 import qiime2
 import q2templates
 from q2_types.ordination import PCoAResults
+import pandas as pd
 
 def visualization(output_dir: str, pcoa : str, metadata : str,
 				 individual_col: str, timepoint_col: str, treatment_col: str):
