@@ -15,6 +15,7 @@ import pkg_resources
 import qiime2
 import q2templates
 from q2_types.ordination import PCoAResults
+import pandas as pd
 
 def fit_timeseries(output_dir: str, pcoa : str, metadata:str, method : str, 
                 individual_col: str, timepoint_col: str, treatment_col: str):
@@ -72,7 +73,7 @@ def _parse_pcoa(pcoa):
     return site
 
 def _parse_metadata(metadata, individual_col, timepoint_col, treatment_col, site):
-    df = DataFrame.from_csv(metadata,sep="\t")
+    df = pd.DataFrame.from_csv(metadata,sep="\t")
     # Drop any rows that are informational
     while df.iloc[0][0].startswith("#"):
 	    df.drop(df.index[:1], inplace=True)
