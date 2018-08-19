@@ -20,7 +20,6 @@ def fit_timeseries(output_dir: str, pcoa : PCoAResults, metadata : qiime2.Metada
 					method : str, individual_col: str, timepoint_col: str, treatment_col: str):
     pcoa = PCoAResults.read(pcoa).to_dataframe()
     metadata = metadata.to_dataframe()
-    #Parse in pcoa and metadata as dataframes and inject to k_fit_timeseries
     site = _parse_pcoa(pcoa)
     input = _parse_metadata(metadata, individual_col, timepoint_col, treatment_col, site)
     if opts.treatment is not None:

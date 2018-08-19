@@ -2,9 +2,8 @@ import qiime2.plugin
 
 import q2_karenina
 #from q2_karenina._spatial_ornstein_uhlenbeck import spatial_ornstein_uhlenbeck
-from q2_karenina._spatial_ornstein_uhlenbeck_v import spatial_ornstein_uhlenbeck_v
 from q2_karenina._fit_timeseries import fit_timeseries
-from q2_karenina._visualization import visualization
+#from q2_karenina._visualization import visualization
 from q2_types.ordination import PCoAResults
 from q2_types.distance_matrix import DistanceMatrix
 from qiime2.plugin import Metadata, Str, Choices, Int, Float
@@ -26,7 +25,6 @@ plugin = qiime2.plugin.Plugin(
 """
 # Method omitted temporarily until:
     # Output can be in qiime2 Metadata, PcOAResults, and DistanceMatrix format
-# Moved to visualization.
 
 plugin.methods.register_function(
 	function=spatial_ornstein_uhlenbeck,
@@ -74,43 +72,6 @@ plugin.methods.register_function(
 				+'with the exception that they include reversion to a mean.')
 )
 """
-plugin.visualizers.register_function(
-	function=spatial_ornstein_uhlenbeck_v,
-	inputs={},
-	parameters={
-		'perturbation_fp':Str,
-		'treatment_names':Str,
-		'n_individuals':Str,
-		'n_timepoints':Int,
-		'perturbation_timepoint':Int,
-		'perturbation_duration':Int,
-		'interindividual_variation':Float,
-		'delta':Float,
-		'lam':Float,
-		'fixed_start_pos':Str
-	},
-	input_descriptions={},
-	parameter_descriptions={
-		'perturbation_fp':'filepath for perturbation parameters for simulation results',
-		'treatment_names':'[\'control,destabalizing_treatment\'] Names for simulation treatments',
-		'n_individuals':'[\'35,35\'] Number of individuals per treatment',
-		'n_timepoints':'[\'10\'] Number of simulation timepoints',
-		'perturbation_timepoint':'[\'5\'] Timepoint at which to apply treatment (<n_timepoints)',
-		'perturbation_duration':'[\'100\'] Duration of perturbation.',
-		'interindividual_variation':'[\'0.01\']Starting variability between individuals',
-		'delta':'[\'0.25\'] Starting Delta parameter for Brownian Motion/ OU models. '
-			+'Higher values indicate greater variability over time',
-		'lam':'[\'0.20\'] Starting Lambda value for OU process. '
-			+'Higher values indicate a greater tendancy to revert to the mean value.',
-		'fixed_start_pos':'Starting x,y,z position for each point. '
-			+'If not defined, starting positions will be randomized based on '
-			+'interindividual_variation; type: string, eg: [\'0.0,0.1,0.2\'].'
-	},
-	name='Spatial Ornstein Uhlenbeck microbial community simulation',
-	description=('This method simulates microbial behavior over time using'
-				+'Ornstein Uhlenbeck models. This are similar to Brownian Motion'
-				+'with the exception that they include reversion to a mean.')
-)
 	
 plugin.visualizers.register_function(
     function=fit_timeseries,
@@ -135,6 +96,8 @@ plugin.visualizers.register_function(
     description='This visualizer generates OU model parameters for PCoA output'
                 'data, for each individual and each defined treatment cohort.'
 )
+"""
+# Temporarily omitted until visualization functions
 
 plugin.visualizers.register_function(
     function=visualization,
@@ -156,3 +119,4 @@ plugin.visualizers.register_function(
     name='Generates 3D animations of PCoA Timeseries',
     description='This visualizer generates 3D animations of PCoA Timeseries.'
 )
+"""
