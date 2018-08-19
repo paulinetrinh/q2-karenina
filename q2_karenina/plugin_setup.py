@@ -106,14 +106,14 @@ plugin.visualizers.register_function(
         #'pcoa' : PCoAResults
     },
     parameters={
-	    'pcoa':Str
+	    'pcoa':Str,
 		'metadata':Str,
 	    'individual_col':Str,
 	    'timepoint_col':Str,
 	    'treatment_col':Str
     },
 	parameter_descriptions = {
-	    'pcoa':'filepath to PCoA results'
+	    'pcoa':'filepath to PCoA results',
 	    'metadata':'filepath to Sample metadata',
 	    'individual_col':'individual column identifier',
 	    'timepoint_col':'timepoint column identifier',
