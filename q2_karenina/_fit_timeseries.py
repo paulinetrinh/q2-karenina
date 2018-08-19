@@ -18,7 +18,7 @@ from q2_types.ordination import PCoAResults
 import pandas as pd
 
 def fit_timeseries(output_dir: str, pcoa : str, metadata:str, method : str, 
-                individual_col: str, timepoint_col: str, treatment_col: str):
+                individual_col: str, timepoint_col: str, treatment_col: str) -> None:
     #pcoa = PCoAResults.read(pcoa).to_dataframe()
     #metadata = metadata.to_dataframe()
     site = _parse_pcoa(pcoa)
