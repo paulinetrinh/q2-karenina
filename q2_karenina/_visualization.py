@@ -27,7 +27,7 @@ def visualization(output_dir: str, pcoa : str, metadata : str,
     tx = treatment_col
     treatments = df[tx].unique()
     while len(colors) < len(treatments):
-        colors.append('lightgray')
+		colors.append('lightgray')
 
     for row in df.iterrows():
         curr_subject_id = "%s_%i" % (df[individual_col], i)
