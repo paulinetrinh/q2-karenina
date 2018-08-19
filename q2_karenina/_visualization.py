@@ -22,7 +22,7 @@ def visualization(output_dir: str, pcoa : str, metadata : str,
 				 individual_col: str, timepoint_col: str, treatment_col: str):
     #Parse in pcoa and metadata as dataframes and inject to k_visualization
     ind = []
-	site = _parse_pcoa(pcoa)
+    site = _parse_pcoa(pcoa)
     df = _parse_metadata(metadata, individual_col, timepoint_col, treatment_col, site)
     i=0
     colors = ['fuchsia', 'cyan', 'darkorange', 'blue', 'yellow']
