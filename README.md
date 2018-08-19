@@ -97,9 +97,9 @@ _____
 
 Utilizing simulation data generated from running spatial-ornstein-uhlenbeck, the following files are used as the PCoA and Metadata files, respectively.
 
-    * https://github.com/SLPeoples/q2-karenina/blob/master/data/ordination.txt
+* https://github.com/SLPeoples/q2-karenina/blob/master/data/ordination.txt
     
-    * https://github.com/SLPeoples/q2-karenina/blob/master/data/metadata.tsv
+* https://github.com/SLPeoples/q2-karenina/blob/master/data/metadata.tsv
 
 We make sure that the files are saved in the appropriate place, in this instance, I have them saved to the qiime2 home directory, so we define the pcoa and metadata parameters to match these filepaths. These must be direct filepaths to PCoA and Metadata files, and not Qiime2 artifacts.
 ```
