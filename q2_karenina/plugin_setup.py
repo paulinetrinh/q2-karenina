@@ -88,7 +88,7 @@ plugin.visualizers.register_function(
 	    'treatment_col':Str
     },
 	parameter_descriptions = {
-	    'pcoa':'filepath to PCoA results'
+	    'pcoa':'filepath to PCoA results',
 		'method':'global optimization method',
 	    'metadata':'filepath to Sample metadata',
 	    'individual_col':'individual column identifier',
