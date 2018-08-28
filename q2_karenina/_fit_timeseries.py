@@ -14,17 +14,15 @@ import karenina.fit_timeseries as k_fit_timeseries
 import pkg_resources
 import qiime2
 import q2templates
-from q2_types.ordination import PCoAResults
+from q2_types.ordination import OrdinationResultsFormat
 import pandas as pd
 import os
 from skbio import OrdinationResultsFormat
 
-def fit_timeseries(output_dir: str, pcoa : skbio.OrdinationResultsFormat, metadata:qiime2.Metadata, method : str, individual_col: str, timepoint_col: str, treatment_col: str) -> None:
-    #pcoa = PCoAResults.read(pcoa).to_dataframe()
-    input_pcoa = str(pcoa)
-    print input_pcoa
+def fit_timeseries(output_dir: str, pcoa: OrdinationResultsFormat, metadata:qiime2.Metadata, method : str, individual_col: str, timepoint_col: str, treatment_col: str) -> None:
+    
     mf = metadata.to_dataframe()
-    site = _parse_pcoa(input_pcoa)
+    site = _parse_pcoa(str(pcoa))
     input = _parse_metadata(mf, individual_col, timepoint_col, treatment_col, site)
     if 'None' in treatment_col:
 	    treatment_col = None
@@ -38,18 +36,18 @@ def fit_timeseries(output_dir: str, pcoa : skbio.OrdinationResultsFormat, metada
 
 def _parse_pcoa(pcoa):
     # Parse PCoA Contents
-    with open(pcoa, 'rb') as f:
-    lines = f.readlines()
+    pcoa = open(pcoa,"rb")
+    lines = pcoa.readlines()
     site = []
     i = 0
     for line in lines:
-        line = line.decode("utf-16")
+        line = line.decode("utf-8")
         if line.startswith("Eigvals"):
-            eigs = lines[i+1].decode("utf-16").strip('\n').strip('\r').split("\t")
+            eigs = lines[i+1].decode("utf-8").strip('\n').strip('\r').split("\t")
         elif line.startswith("Proportion explained"):
-            propEx = lines[i+1].decode("utf-16").strip('\n').strip('\r').split("\t")
+            propEx = lines[i+1].decode("utf-8").strip('\n').strip('\r').split("\t")
         elif line.startswith("Species"):
-            species = lines[i + 1].decode("utf-16").strip('\n').strip('\r').split("\t")
+            species = lines[i + 1].decode("utf-8").strip('\n').strip('\r').split("\t")
 
         elif line.startswith("Site"):
             # We don't want Site constraints.
@@ -58,7 +56,7 @@ def _parse_pcoa(pcoa):
             max = int(line.split("\t")[1])+i
             j = i + 1
             while j <= max:
-                t_line = lines[j].decode('utf-16')
+                t_line = lines[j].decode('utf-8')
                 site.append(t_line.strip('\n').strip('\r').split("\t"))
                 j += 1
         i += 1
