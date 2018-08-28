@@ -38,18 +38,18 @@ def fit_timeseries(output_dir: str, pcoa : skbio.OrdinationResultsFormat, metada
 
 def _parse_pcoa(pcoa):
     # Parse PCoA Contents
-    pcoa = open(pcoa,"rb")
-    lines = pcoa.readlines()
+    with open(pcoa, 'rb') as f:
+    lines = f.readlines()
     site = []
     i = 0
     for line in lines:
-        line = line.decode("utf-8")
+        line = line.decode("utf-16")
         if line.startswith("Eigvals"):
-            eigs = lines[i+1].decode("utf-8").strip('\n').strip('\r').split("\t")
+            eigs = lines[i+1].decode("utf-16").strip('\n').strip('\r').split("\t")
         elif line.startswith("Proportion explained"):
-            propEx = lines[i+1].decode("utf-8").strip('\n').strip('\r').split("\t")
+            propEx = lines[i+1].decode("utf-16").strip('\n').strip('\r').split("\t")
         elif line.startswith("Species"):
-            species = lines[i + 1].decode("utf-8").strip('\n').strip('\r').split("\t")
+            species = lines[i + 1].decode("utf-16").strip('\n').strip('\r').split("\t")
 
         elif line.startswith("Site"):
             # We don't want Site constraints.
@@ -58,7 +58,7 @@ def _parse_pcoa(pcoa):
             max = int(line.split("\t")[1])+i
             j = i + 1
             while j <= max:
-                t_line = lines[j].decode('utf-8')
+                t_line = lines[j].decode('utf-16')
                 site.append(t_line.strip('\n').strip('\r').split("\t"))
                 j += 1
         i += 1
