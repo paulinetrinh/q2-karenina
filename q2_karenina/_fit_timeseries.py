@@ -22,10 +22,14 @@ import skbio
 def fit_timeseries(output_dir: str, pcoa : skbio.OrdinationResults, metadata:qiime2.Metadata, method : str,
                 individual_col: str, timepoint_col: str, treatment_col: str) -> None:
     #pcoa = PCoAResults.read(pcoa).to_dataframe()
-    #metadata = metadata.to_dataframe()
-    pcoastring = str(pcoa)
-    site = _parse_pcoa(pcoastring)
-    input = _parse_metadata(metadata, individual_col, timepoint_col, treatment_col, site)
+    with tempfile.TemporaryDirectory() as temp_dir_name:
+        ## write the biom table to file
+        input_pcoa = os.path.join(temp_dir_name, 'ordination.tsv')
+        with open(input_pcoa, 'w') as fh:
+            fh.write(pcoa.to_tsv())
+    mf = metadata.to_dataframe()
+    site = _parse_pcoa(input_pcoa)
+    input = _parse_metadata(mf, individual_col, timepoint_col, treatment_col, site)
     if 'None' in treatment_col:
 	    treatment_col = None
     if treatment_col is not None:
