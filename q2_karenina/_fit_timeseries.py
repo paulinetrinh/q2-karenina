@@ -17,18 +17,12 @@ import q2templates
 from q2_types.ordination import PCoAResults
 import pandas as pd
 import os
-import skbio
+from skbio import OrdinationResultsFormat
 
-def fit_timeseries(output_dir: str, pcoa : skbio.OrdinationResults, metadata:qiime2.Metadata, method : str,
-                individual_col: str, timepoint_col: str, treatment_col: str) -> None:
+def fit_timeseries(output_dir: str, pcoa : skbio.OrdinationResultsFormat, metadata:qiime2.Metadata, method : str, individual_col: str, timepoint_col: str, treatment_col: str) -> None:
     #pcoa = PCoAResults.read(pcoa).to_dataframe()
-    with tempfile.TemporaryDirectory() as temp_dir_name:
-        ## write the biom table to file
-        input_pcoa = os.path.join(temp_dir_name, 'ordination.tsv')
-        with open(input_pcoa, 'w') as fh:
-            fh.write(pcoa.to_tsv())
     mf = metadata.to_dataframe()
-    site = _parse_pcoa(input_pcoa)
+    site = _parse_pcoa(str(pcoa))
     input = _parse_metadata(mf, individual_col, timepoint_col, treatment_col, site)
     if 'None' in treatment_col:
 	    treatment_col = None
