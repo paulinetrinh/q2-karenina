@@ -21,8 +21,10 @@ from skbio import OrdinationResultsFormat
 
 def fit_timeseries(output_dir: str, pcoa : skbio.OrdinationResultsFormat, metadata:qiime2.Metadata, method : str, individual_col: str, timepoint_col: str, treatment_col: str) -> None:
     #pcoa = PCoAResults.read(pcoa).to_dataframe()
+    input_pcoa = str(pcoa)
+    print input_pcoa
     mf = metadata.to_dataframe()
-    site = _parse_pcoa(str(pcoa))
+    site = _parse_pcoa(input_pcoa)
     input = _parse_metadata(mf, individual_col, timepoint_col, treatment_col, site)
     if 'None' in treatment_col:
 	    treatment_col = None
