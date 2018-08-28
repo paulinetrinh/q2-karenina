@@ -77,18 +77,19 @@ plugin.methods.register_function(
 plugin.visualizers.register_function(
     function=fit_timeseries,
     inputs={
-        #'pcoa' : PCoAResults
+        'pcoa' : PCoAResults
     },
     parameters={
-        'pcoa':Str,
+                                     #'pcoa':Str,
 		'method':Str % Choices({'basinhopping'}),
 	    'metadata':Str,
 	    'individual_col':Str,
 	    'timepoint_col':Str,
 	    'treatment_col':Str
     },
+    input_descriptions = { 'pcoa':'filepath to PCoA results' }
 	parameter_descriptions = {
-	    'pcoa':'filepath to PCoA results',
+	    
 		'method':'global optimization method',
 	    'metadata':'filepath to Sample metadata',
 	    'individual_col':'individual column identifier',

@@ -17,12 +17,14 @@ import q2templates
 from q2_types.ordination import PCoAResults
 import pandas as pd
 import os
+import skbio
 
-def fit_timeseries(output_dir: str, pcoa : str, metadata:str, method : str, 
+def fit_timeseries(output_dir: str, pcoa : skbio.OrdinationResults, metadata:qiime2.Metadata, method : str,
                 individual_col: str, timepoint_col: str, treatment_col: str) -> None:
     #pcoa = PCoAResults.read(pcoa).to_dataframe()
     #metadata = metadata.to_dataframe()
-    site = _parse_pcoa(pcoa)
+    pcoastring = str(pcoa)
+    site = _parse_pcoa(pcoastring)
     input = _parse_metadata(metadata, individual_col, timepoint_col, treatment_col, site)
     if 'None' in treatment_col:
 	    treatment_col = None
@@ -32,7 +34,7 @@ def fit_timeseries(output_dir: str, pcoa : str, metadata:str, method : str,
     else:
         output = fit_input(input, individual_col, timepoint_col, treatment_col, method)
     output.to_csv(os.path.join(output_dir,"individual_fit_timeseries.csv"), index=False)
-	
+
 
 def _parse_pcoa(pcoa):
     # Parse PCoA Contents
@@ -80,7 +82,7 @@ def _parse_metadata(metadata, individual_col, timepoint_col, treatment_col, site
     # Drop any rows that are informational
     while df.iloc[0][0].startswith("#"):
 	    df.drop(df.index[:1], inplace=True)
-	
+
     # Combine Individual columns if multiple subject identifiers defined (Such as individual and site)
     if "," in individual_col:
         individual_temp = individual_col.split(",")
@@ -111,7 +113,7 @@ def _parse_metadata(metadata, individual_col, timepoint_col, treatment_col, site
         df_ind = df[individual_col]
 
     df_tp = df[timepoint_col]
-    
+
     #Copy individual column into treatment if none assigned
     if treatment_col is not None:
         df_tx = df[treatment_col]
@@ -137,4 +139,3 @@ def _parse_metadata(metadata, individual_col, timepoint_col, treatment_col, site
         #Preserves only values which have initial positions, drops null coordinates.
         #In example files, L3S242 was in metadata File, but not in the PCOA file, so there was one less in the df_ret.
     return df_ret
-
